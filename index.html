@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Password Guardian — A privacy-first password strength analyzer. Assess your password security, get personalized improvement tips, and generate stronger variations. All analysis happens locally in your browser.">
+    <meta name="keywords" content="password strength, password checker, password analyzer, security, privacy, password guardian">
+    <meta name="author" content="A Thomas Amala Heringston">
+    <meta name="theme-color" content="#6c63ff">
+    <title>Password Guardian — Smart Password Strength Analyzer</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ============================================ -->
+    <!-- HEADER                                       -->
+    <!-- ============================================ -->
+    <header class="site-header" id="site-header">
+        <div class="header-content">
+            <div class="header-icon">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M24 4L6 12v12c0 11.1 7.7 21.5 18 24 10.3-2.5 18-12.9 18-24V12L24 4z" fill="url(#shield-grad)" opacity="0.9"/>
+                    <path d="M24 4L6 12v12c0 11.1 7.7 21.5 18 24 10.3-2.5 18-12.9 18-24V12L24 4z" stroke="url(#shield-stroke)" stroke-width="2" fill="none"/>
+                    <path d="M17 24l5 5 9-9" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    <defs>
+                        <linearGradient id="shield-grad" x1="6" y1="4" x2="42" y2="48">
+                            <stop offset="0%" stop-color="#6c63ff"/>
+                            <stop offset="100%" stop-color="#00d4aa"/>
+                        </linearGradient>
+                        <linearGradient id="shield-stroke" x1="6" y1="4" x2="42" y2="48">
+                            <stop offset="0%" stop-color="#8b83ff"/>
+                            <stop offset="100%" stop-color="#33e0c0"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <h1 class="header-title">Password <span class="accent-text">Guardian</span></h1>
+            <p class="header-subtitle">Analyze. Strengthen. Protect.</p>
+        </div>
+    </header>
+
+    <!-- ============================================ -->
+    <!-- MAIN CONTENT                                 -->
+    <!-- ============================================ -->
+    <main class="main-content" id="main-content">
+
+        <!-- Privacy Notice -->
+        <div class="privacy-notice" id="privacy-notice">
+            <div class="privacy-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect x="3" y="11" width="18" height="11" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <path d="M7 11V7a5 5 0 0110 0v4" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+                    <circle cx="12" cy="16" r="1.5" fill="currentColor"/>
+                </svg>
+            </div>
+            <p class="privacy-text">Your password never leaves your device. All analysis happens locally in your browser.</p>
+        </div>
+
+        <!-- Password Input Section -->
+        <section class="card input-card" id="input-section" aria-label="Password input">
+            <h2 class="card-title">Enter Your Password</h2>
+            <p class="card-description">Type or paste a password to analyze its strength and get personalized improvement tips.</p>
+            
+            <div class="input-wrapper">
+                <div class="input-field-group">
+                    <input 
+                        type="password" 
+                        id="password-input" 
+                        class="password-input" 
+                        placeholder="Enter your password here…" 
+                        autocomplete="off" 
+                        autocorrect="off" 
+                        autocapitalize="off" 
+                        spellcheck="false"
+                        aria-label="Password to analyze"
+                        maxlength="256"
+                    >
+                    <button 
+                        type="button" 
+                        id="toggle-visibility" 
+                        class="toggle-btn" 
+                        aria-label="Toggle password visibility"
+                        title="Show/Hide password"
+                    >
+                        <svg class="eye-icon eye-open" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                        <svg class="eye-icon eye-closed hidden" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/>
+                            <line x1="1" y1="1" x2="23" y2="23"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="input-meta">
+                    <span id="char-count" class="char-count">0 characters</span>
+                </div>
+                <div class="btn-group">
+                    <button type="button" id="analyze-btn" class="btn btn-primary" aria-label="Analyze password">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        </svg>
+                        Analyze Password
+                    </button>
+                    <button type="button" id="clear-btn" class="btn btn-secondary" aria-label="Clear password input">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <line x1="18" y1="6" x2="6" y2="18"/>
+                            <line x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                        Clear
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- RESULTS (hidden initially)                   -->
+        <!-- ============================================ -->
+        <div id="results" class="results-container hidden">
+
+            <!-- Strength Meter -->
+            <section class="card strength-card" id="strength-section" aria-label="Password strength">
+                <h2 class="card-title">Strength Assessment</h2>
+                <div class="strength-display">
+                    <div class="strength-info">
+                        <span id="strength-label" class="strength-label">—</span>
+                        <span id="strength-score" class="strength-score">Score: —/4</span>
+                    </div>
+                    <div class="strength-bar-container" id="strength-bar-container" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="4" aria-label="Password strength meter">
+                        <div class="strength-bar" id="strength-bar"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Composition Analysis -->
+            <section class="card composition-card" id="composition-section" aria-label="Password composition analysis">
+                <h2 class="card-title">Composition Analysis</h2>
+                <div class="composition-grid" id="composition-grid">
+                    <!-- Dynamically populated by JS -->
+                </div>
+            </section>
+
+            <!-- Crack Time Estimates -->
+            <section class="card crack-time-section" id="crack-time-section" aria-label="Estimated crack times">
+                <h2 class="card-title">Estimated Crack Times</h2>
+                <p class="card-description">Estimated crack times based on contemporary password attack models.</p>
+                <div class="crack-time-grid" id="crack-time-grid">
+                    <!-- Dynamically populated by JS -->
+                </div>
+            </section>
+
+            <!-- Improvement Suggestions -->
+            <section class="card suggestions-card" id="suggestions-section" aria-label="Improvement suggestions">
+                <h2 class="card-title">Personalized Suggestions</h2>
+                <div class="suggestions-list" id="suggestions-list">
+                    <!-- Dynamically populated by JS -->
+                </div>
+            </section>
+
+            <!-- Stronger Variations -->
+            <section class="card variations-card" id="variations-section" aria-label="Stronger password variations">
+                <h2 class="card-title">Stronger Variations</h2>
+                <p class="card-description">Three improved password suggestions inspired by your original — stronger yet still memorable.</p>
+                <div class="variations-container" id="variations-container">
+                    <!-- Dynamically populated by JS -->
+                </div>
+            </section>
+
+            <!-- Good Password Practices -->
+            <section class="card tips-card" id="tips-section" aria-label="Good password practices">
+                <h2 class="card-title">Good Password Practices</h2>
+                <ul class="tips-list">
+                    <li class="tip-item">
+                        <span class="tip-icon" aria-hidden="true">🔑</span>
+                        <span class="tip-text">Use unique passwords for different accounts. A breach on one site shouldn't compromise all your accounts.</span>
+                    </li>
+                    <li class="tip-item">
+                        <span class="tip-icon" aria-hidden="true">📏</span>
+                        <span class="tip-text">Prefer passphrases over short passwords. A phrase like "correct horse battery staple" is both strong and memorable.</span>
+                    </li>
+                    <li class="tip-item">
+                        <span class="tip-icon" aria-hidden="true">🔐</span>
+                        <span class="tip-text">Enable two-factor authentication (2FA) when available. Even a strong password benefits from a second layer of defense.</span>
+                    </li>
+                    <li class="tip-item">
+                        <span class="tip-icon" aria-hidden="true">🗄️</span>
+                        <span class="tip-text">Consider using a password manager. It securely stores your unique passwords so you only need to remember one master password.</span>
+                    </li>
+                </ul>
+            </section>
+        </div><!-- /#results -->
+
+    </main>
+
+    <!-- ============================================ -->
+    <!-- FOOTER                                       -->
+    <!-- ============================================ -->
+    <footer class="site-footer" id="site-footer">
+        <div class="footer-content">
+            <a href="https://digitalheroesco.com" target="_blank" rel="noopener noreferrer" class="digital-heroes-btn" id="digital-heroes-btn">
+                Built for Digital Heroes
+            </a>
+            <div class="footer-identity">
+                <p class="footer-name">A Thomas Amala Heringston</p>
+                <a href="mailto:thomasheringston05@gmail.com" class="footer-email">thomasheringston05@gmail.com</a>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2025 Password Guardian. All rights reserved.</p>
+                <p class="footer-tagline">Privacy-first password security analysis.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+    <!-- Load zxcvbn library from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
+    <!-- Application Logic -->
+    <script src="script.js"></script>
+
+</body>
+</html>
