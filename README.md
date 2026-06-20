@@ -107,44 +107,6 @@ xdg-open index.html    # Linux
 
 That's it — **no build step, no install, no configuration**.
 
-### Deploy to Vercel (Free)
-
-Deploying Password Guardian to the web takes under 2 minutes:
-
-1. **Push** this project to a GitHub repository
-2. **Sign in** to [Vercel](https://vercel.com) (free Hobby plan)
-3. **Import** your GitHub repository
-4. **Configure** the project:
-   - Framework Preset: **Other**
-   - Build Command: *(leave empty)*
-   - Output Directory: `./`
-5. **Deploy** — your site will be live at `your-project.vercel.app`
-
-> **Total cost: $0** — Vercel's Hobby plan is free for personal projects.
-
-You can also deploy to **GitHub Pages**, **Netlify**, or any static hosting provider with identical ease.
-
----
-
-## 📋 Internship Requirements Checklist
-
-| Requirement | Status |
-|---|---|
-| Real, working output | ✅ Complete |
-| Client-side only analysis | ✅ Complete |
-| No passwords transmitted or stored | ✅ Complete |
-| zxcvbn integration | ✅ Complete |
-| Strength ratings display | ✅ Complete |
-| Crack time estimates | ✅ Complete |
-| Personalized suggestions | ✅ Complete |
-| 3 stronger variations generated | ✅ Complete |
-| "Built for Digital Heroes" button with correct link | ✅ Complete |
-| Full name and email visible | ✅ Complete |
-| Responsive design | ✅ Complete |
-| Vercel Hobby deployable | ✅ Complete |
-| No paid services | ✅ Complete |
-
----
 
 ## 👤 Author
 
